@@ -41,8 +41,8 @@ export default function Experience() {
 
   return (
     <>
-      <OrbitControls ref={ref} />
-      {/* <Perf position="top-left" /> */}
+      <OrbitControls ref={ref} enableRotate={false} enableZoom={false} />
+      <Perf position="top-left" />
       <Environment files={["/environments/citrus_orchard_puresky_4k.hdr"]} background environmentIntensity={0.8} />
       {/* Scene */}
 
