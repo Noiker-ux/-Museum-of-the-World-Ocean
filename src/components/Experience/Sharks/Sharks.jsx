@@ -2,7 +2,7 @@ import { useAnimations, useGLTF } from "@react-three/drei";
 import { useEffect } from "react";
 
 export default function Sharks() {
-  const sharkModel = useGLTF("/models/sharksVals.glb");
+  const sharkModel = useGLTF("/models/waltz_of_the_sharks/scene.gltf");
   const sharkAnimations = useAnimations(sharkModel.animations, sharkModel.scene);
 
   useEffect(() => {

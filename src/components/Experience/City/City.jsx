@@ -1,55 +1,58 @@
 import { useGLTF } from "@react-three/drei";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import gsap from "gsap";
+import { ViewContext } from "../../../providers/View.provider";
 
 export default function City() {
-  const cityModel = useGLTF("/models/city.glb");
-  console.log(cityModel);
+  const { cityModel } = useContext(ViewContext);
 
   useEffect(() => {
     // Cтарт показа генерация
     Object.keys(cityModel.nodes)
-      .sort((a, b) => b - a)
+      .filter((n) => {
+        return Number(n) % 1 === 0;
+      })
+      .sort((a, b) => a - b)
       .map((m, idx) => {
         gsap.fromTo(cityModel.nodes[m].scale, { x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 1, delay: idx * 0.1 });
       });
     //  Таймлайн крана
     gsap.fromTo(
-      cityModel.nodes["crane_001001"].rotation,
+      cityModel.nodes["34"].rotation,
       { y: -Math.PI * 0.5 },
       { y: 0.15, duration: 3, delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 5 }
     );
     gsap.fromTo(
-      cityModel.nodes["crane_001002"].rotation,
+      cityModel.nodes["35"].rotation,
       { y: -Math.PI * 0.5 },
       { y: 0.15, duration: 3, delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 5 }
     );
 
-    gsap.to(cityModel.nodes["crane_001002"].position, {
+    gsap.to(cityModel.nodes["35"].position, {
       x: -11,
       z: -20.5,
       duration: 3,
       delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 7,
     });
     gsap.fromTo(
-      cityModel.nodes["crane_001003"].rotation,
+      cityModel.nodes["36"].rotation,
       { y: -Math.PI * 0.5 },
       { y: 0.15, duration: 3, delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 5 }
     );
-    gsap.to(cityModel.nodes["crane_001003"].position, {
+    gsap.to(cityModel.nodes["36"].position, {
       x: -11,
       z: -20.5,
       duration: 3,
       delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 7,
     });
-    gsap.to(cityModel.nodes["crane_001003"].scale, {
+    gsap.to(cityModel.nodes["36"].scale, {
       y: 4,
       duration: 3,
       delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 10,
     });
 
     gsap.fromTo(
-      cityModel.nodes["crane_001003"].position,
+      cityModel.nodes["36"].position,
       {
         y: 35,
       },
@@ -61,7 +64,7 @@ export default function City() {
     );
 
     gsap.fromTo(
-      cityModel.nodes["crane_001003"].scale,
+      cityModel.nodes["36"].scale,
       {
         y: 4,
       },
@@ -72,7 +75,7 @@ export default function City() {
       }
     );
 
-    gsap.to(cityModel.nodes["crane_001003"].position, {
+    gsap.to(cityModel.nodes["36"].position, {
       y: 35,
       duration: 3,
       delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 13,
