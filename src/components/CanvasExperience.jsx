@@ -5,6 +5,7 @@ export default function CanvasExperience() {
   return (
     <div>
       <Canvas
+        antialias={false}
         style={{ width: "100vw", height: "100vh" }}
         camera={{
           near: 0.1,

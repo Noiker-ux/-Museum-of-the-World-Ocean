@@ -19,7 +19,7 @@ import Water from "./Water/Water";
 export default function Experience() {
   const ref = useRef();
   const { setViewId, viewId } = useContext(ViewContext);
-  const { camera } = useThree();
+  const { camera, gl } = useThree();
 
   useEffect(() => {
     const currentAnnotation = annotations.find((e) => {
@@ -44,15 +44,19 @@ export default function Experience() {
     <>
       <OrbitControls ref={ref} />
       <Perf position="top-left" />
-      <Environment files={["/environments/citrus_orchard_puresky_4k.hdr"]} background environmentIntensity={0.8} />
+      <Environment
+        files={["/environments/9a8c8a0184c211f0b8eaeaf520c1e6fb-1.hdr"]}
+        background
+        environmentIntensity={0.8}
+      />
       {/* Scene */}
 
-      <WaterBall />
+      {/* <WaterBall /> */}
       <City />
-      <Akwarium1 />
-      <SpongeBob />
-      <Turtle />
-      <Jellyfish />
+      {/* <Akwarium1 />
+      <SpongeBob /> */}
+      {/* <Turtle />
+      <Jellyfish /> */}
       {/* <Water /> */}
       <Float position={[15, 23, -30]} rotation={[0, 0, 0]}>
         <Text fontSize={3.5} font="/fonts/bangers-v20-latin-regular.woff" color={"#9999ff"} maxWidth={20}>
