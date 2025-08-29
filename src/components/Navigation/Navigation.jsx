@@ -5,8 +5,8 @@ import annotation from "../../data/annotations.json";
 export default function Navigation() {
   const { setViewId, viewId } = useContext(ViewContext);
   return (
-    <div className="fixed bottom-0 w-3/4 right-0 px-10">
-      <div className="bg-white rounded-t-2xl flex overflow-hidden w-auto ">
+    <div className="fixed bottom-0 right-0 left-0 mx-auto px-10 flex justify-center">
+      <div className="bg-white rounded-t-2xl flex overflow-hidden w-fit ">
         {annotation.map((a) => (
           <div
             key={a.title}

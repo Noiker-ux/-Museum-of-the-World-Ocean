@@ -1,13 +1,16 @@
 import { Clone, useGLTF } from "@react-three/drei";
 import { useAnimations } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
 import gsap from "gsap";
+import { ViewContext } from "../../../../providers/View.provider";
 
 export default function Akwarium1() {
+  const { delayNodes } = useContext(ViewContext);
   // Refs
   const carpRef = useRef();
   const guppieRef = useRef();
+  const groupRef = useRef();
   // Models
   const carpFish = useGLTF("/models/carp.glb");
   const guppieFish = useGLTF("/models/guppie2.glb");
@@ -18,6 +21,7 @@ export default function Akwarium1() {
   useEffect(() => {
     carpAnimate.actions["MorphBake"].play();
     guppieAnimate.actions["Take 001"].play();
+    gsap.fromTo(groupRef.current.scale, { x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 1, delay: delayNodes * 0.1 - 2 });
   }, []);
 
   let carpDirection = "right";
@@ -56,8 +60,10 @@ export default function Akwarium1() {
     }
   }
 
+  useEffect(() => {}, []);
+
   return (
-    <>
+    <group ref={groupRef} scale={[0, 0, 0]}>
       <primitive ref={carpRef} object={carpFish.scene} position={[5, 3, -17.3]} scale={0.05} />
       <primitive
         ref={guppieRef}
@@ -74,6 +80,6 @@ export default function Akwarium1() {
           position={[5 + (Math.random() - 0.5) * 4, 3 + (Math.random() - 0.5) * 3 * idx, -17.3]}
         />
       ))}
-    </>
+    </group>
   );
 }

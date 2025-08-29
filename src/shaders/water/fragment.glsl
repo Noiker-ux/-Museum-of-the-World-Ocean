@@ -1,20 +1,17 @@
 uniform vec3 uColorA;
 uniform vec3 uColorB;
 uniform float uTime;
+uniform sampler2D uWaterTexture;
 
-varying float vElevation;
 varying vec2 vUv;
 
-#include ../includes/simplex2D.glsl
+#include ../includes/perlin2D.glsl
 
 void main() {
+    float strength = step(0.9, sin(cnoise(vUv * uTime) * 20.0));
 
-    float strength = 2.0 -  (distance(vUv, vec2(0.5)));
+    gl_FragColor = vec4(vec3(strength), 1.0);
 
-
-    float mixStrength = (vElevation + 0.05) * 4.0;
-    vec3 color = mix(uColorA, uColorB, mixStrength);
-  
-    gl_FragColor = vec4(color, strength);
+    #include <tonemapping_fragment>
     #include <colorspace_fragment>
 }

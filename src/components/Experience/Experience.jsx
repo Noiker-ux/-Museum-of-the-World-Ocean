@@ -1,5 +1,5 @@
 import { Perf } from "r3f-perf";
-import { OrbitControls, Environment } from "@react-three/drei";
+import { OrbitControls, Environment, Float, Text } from "@react-three/drei";
 
 import WaterBall from "./WaterBall/WaterBall";
 import { useEffect, useRef, useContext } from "react";
@@ -14,6 +14,7 @@ extend(THREE);
 import { ViewContext } from "../../providers/View.provider";
 import Turtle from "./Akwarium/Inner/Turtle/Turtle";
 import Jellyfish from "./Akwarium/Inner/Jellyfish/Jellyfish";
+import Water from "./Water/Water";
 
 export default function Experience() {
   const ref = useRef();
@@ -41,7 +42,7 @@ export default function Experience() {
 
   return (
     <>
-      <OrbitControls ref={ref} enableRotate={false} enableZoom={false} />
+      <OrbitControls ref={ref} />
       <Perf position="top-left" />
       <Environment files={["/environments/citrus_orchard_puresky_4k.hdr"]} background environmentIntensity={0.8} />
       {/* Scene */}
@@ -52,6 +53,12 @@ export default function Experience() {
       <SpongeBob />
       <Turtle />
       <Jellyfish />
+      {/* <Water /> */}
+      <Float position={[15, 23, -30]} rotation={[0, 0, 0]}>
+        <Text fontSize={3.5} font="/fonts/bangers-v20-latin-regular.woff" color={"#9999ff"} maxWidth={20}>
+          Museum of the World Ocean
+        </Text>
+      </Float>
     </>
   );
 }

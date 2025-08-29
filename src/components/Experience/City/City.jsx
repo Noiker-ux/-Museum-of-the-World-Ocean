@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ViewContext } from "../../../providers/View.provider";
 
 export default function City() {
-  const { cityModel } = useContext(ViewContext);
+  const { cityModel, delayNodes } = useContext(ViewContext);
 
   useEffect(() => {
     // Cтарт показа генерация
@@ -20,35 +20,35 @@ export default function City() {
     gsap.fromTo(
       cityModel.nodes["34"].rotation,
       { y: -Math.PI * 0.5 },
-      { y: 0.15, duration: 3, delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 5 }
+      { y: 0.15, duration: 3, delay: delayNodes * 0.1 + 5 }
     );
     gsap.fromTo(
       cityModel.nodes["35"].rotation,
       { y: -Math.PI * 0.5 },
-      { y: 0.15, duration: 3, delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 5 }
+      { y: 0.15, duration: 3, delay: delayNodes * 0.1 + 5 }
     );
 
     gsap.to(cityModel.nodes["35"].position, {
       x: -11,
       z: -20.5,
       duration: 3,
-      delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 7,
+      delay: delayNodes * 0.1 + 7,
     });
     gsap.fromTo(
       cityModel.nodes["36"].rotation,
       { y: -Math.PI * 0.5 },
-      { y: 0.15, duration: 3, delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 5 }
+      { y: 0.15, duration: 3, delay: delayNodes * 0.1 + 5 }
     );
     gsap.to(cityModel.nodes["36"].position, {
       x: -11,
       z: -20.5,
       duration: 3,
-      delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 7,
+      delay: delayNodes * 0.1 + 7,
     });
     gsap.to(cityModel.nodes["36"].scale, {
       y: 4,
       duration: 3,
-      delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 10,
+      delay: delayNodes * 0.1 + 10,
     });
 
     gsap.fromTo(
@@ -59,7 +59,7 @@ export default function City() {
       {
         y: 31,
         duration: 3,
-        delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 10,
+        delay: delayNodes * 0.1 + 10,
       }
     );
 
@@ -71,14 +71,14 @@ export default function City() {
       {
         y: 1,
         duration: 3,
-        delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 13,
+        delay: delayNodes * 0.1 + 13,
       }
     );
 
     gsap.to(cityModel.nodes["36"].position, {
       y: 35,
       duration: 3,
-      delay: (Object.keys(cityModel.nodes).length - 1) * 0.1 + 13,
+      delay: delayNodes * 0.1 + 13,
     });
   }, []);
 
